@@ -23,3 +23,6 @@ On execution it will ask you to input the number of processors and the name of t
 Since all the processors are simulated to run individually in their own threads, the execution timeline for each Processor may vary. </br>
 The store output will show the vector clocks as they were updated for each processor and it provides intuition of the order in which the execution plan at each processor may occur.</br>
 
+<h1>SAMPLE OUTPUT</h1>
+
+![Alt text](Sample_output.png?raw=true "Sample Output")
