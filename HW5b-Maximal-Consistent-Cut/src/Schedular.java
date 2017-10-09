@@ -27,7 +27,6 @@ public class Schedular implements Runnable{
 	
 	            while((line = bufferedReader.readLine()) != null) {
 	            	String threadName = Thread.currentThread().getName();
-//		            System.out.println("Thread Name = "+ threadName);
 		            if (Objects.equals(line, "C")){
 	            		P.sendMessgeToProcessor(MessageType.COMPUTATION, null);
 	            	}
