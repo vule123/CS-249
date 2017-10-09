@@ -48,6 +48,7 @@ public class VectorClock implements Comparable<Object>{
 		try {
 			lock.lock();
 			vc[index]= value;
+//			printClock();
 		}
 		finally{
 			lock.unlock();

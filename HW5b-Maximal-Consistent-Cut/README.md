@@ -4,11 +4,7 @@ Create an execution Plan for a Processor in a file and save it.</br>
 Currently there are only three type of events supported.</br>
 1) COMPUTATION EVENT: For a computation event just write C (in CAPITAL) for that Processor</br>
 2) SEND EVENT: For a send event write S <processer_id_of_receiver> (in CAPITAL). For example in order to simulate a send event to Processor 2, write S 2.</br>
-<<<<<<< HEAD
-3) CUT: Send a cut to each processor to calculate the maximal cut. 
-=======
 3) CUT: Send a cut to each processor to calculate the maximal cut.</br> 
->>>>>>> maximal consistent cut
 
 Once you have created execution plans for each processor, run the main.java file from the src folder.</br>
 On execution it will ask you to input the number of processors and the name of the files containing their execution plans.</br></br>
@@ -38,8 +34,4 @@ Input a cut for example 4 1 or 4 2
 
 <h1>SAMPLE OUTPUT</h1>
 
-<<<<<<< HEAD
-![Alt text](Sample_output.png?raw=true "Sample Output")
-=======
 ![Alt text](sample_output.png?raw=true "Sample Output")
->>>>>>> maximal consistent cut
