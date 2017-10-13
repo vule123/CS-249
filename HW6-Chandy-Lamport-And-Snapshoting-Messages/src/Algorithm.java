@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * This is the simulation of a main algorithm that will run on processors P1, P2, P3
  * This could be a banking application, payroll application or any other distributed application
@@ -20,7 +18,8 @@ public class Algorithm {
 
 
 
-    public void executionPlanP1 () throws InterruptedException {
+    public void executionPlanP1 () throws InterruptedException{
+        
     	Message m = new Message(MessageType.ALGORITHM);
     	m.setFrom(processor1);
     	compute(processor1);
@@ -55,6 +54,7 @@ public class Algorithm {
 
     // Write hard coded execution plan for processors
     public void executionPlanP2() throws InterruptedException {
+
     	Message m = new Message(MessageType.ALGORITHM);
     	m.setFrom(processor2);
     	compute(processor2);
@@ -84,6 +84,7 @@ public class Algorithm {
 
     // Write hard coded execution plan for processors
     public void executionPlanP3() throws InterruptedException {
+
     	Message m = new Message(MessageType.ALGORITHM);
     	m.setFrom(processor3);
     	compute(processor3);
@@ -117,17 +118,9 @@ public class Algorithm {
      * @param p
      */
     public void compute(Processor p) {
-        // System.out.println("Doing some computation on " + p.getClass().getSimpleName());
-    	System.out.println("Doing some computation on " + p.getId());
+        System.out.println("Doing some computation on " + p.getID());
     }
 
-    /**
-     *
-     * @param to processor to which message is sent
-     * @param channel the incoming channel on the to processor that will receive this message
-     */
-    public void send(Processor to, Buffer channel) {
-        to.sendMessgeTo(null, channel); // ALGORITHM
-    }
+   
 
 }

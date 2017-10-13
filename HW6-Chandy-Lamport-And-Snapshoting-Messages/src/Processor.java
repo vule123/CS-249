@@ -49,7 +49,7 @@ public class Processor implements Observer {
     /**
      * This map is used to keep track of the threads associated with each incoming channels that are being recorded    
      */
-    Map<Buffer, ChannelRecorder> channelRecorders = null;
+    Map<Buffer, ChannelRecorder> channerRecorders = null;
     
     
     /**
@@ -62,7 +62,7 @@ public class Processor implements Observer {
         this.outChannels = outChannels;
         this.channelMarkerCount = new HashMap<>();
         this.channelState = new HashMap<>();
-        this.channelRecorders = new HashMap<>();
+        this.channerRecorders = new HashMap<>();
         //TODO: Homework make this processor as the observer for each of its inChannel
         //Hint [loop through each channel and add Observer (this) . Feel free to use java8 style streams if it makes
         // it look cleaner]
@@ -72,30 +72,15 @@ public class Processor implements Observer {
 
     }
 
-    public int getId(){
-    	return this.id;
-    }
-    
-    public List<Buffer> getOutChannels(){
-    	return this.outChannels;
-    }
-    
-    public List<Buffer> getInChannels(){
-    	return this.inChannels;
-    }
-    
-    public int getAns(){
-    	return this.ans;
-    }
-    
+
     /**
      * This is a dummy implementation which will record current state
      * of this processor
      */
     public void recordMyCurrentState() {
-        System.out.println("Recording my registers... Processor: " + this.getId());
-        System.out.println("Recording my program counters...Processor: " + this.getId());
-        System.out.println("Recording my local variables...Processor: " + this.getId());
+        System.out.println("Recording my registers... Processor: " + this.getID());
+        System.out.println("Recording my program counters...Processor: " + this.getID());
+        System.out.println("Recording my local variables...Processor: " + this.getID());
         ans = num;
     }
 
@@ -153,9 +138,9 @@ public class Processor implements Observer {
 //                channelMarkerCount.put(fromChannel, channelMarkerCount.get(fromChannel) + 1);
                 //From the other incoming Channels (excluding the fromChannel which has sent the marker
                 // startrecording messages
-                this.getInChannels().stream().filter(channel-> channel!=fromChannel).forEach(channel-> channelRecorders.put(channel, new ChannelRecorder(channel, channelState)));
+                this.getInChannels().stream().filter(channel-> channel!=fromChannel).forEach(channel-> channerRecorders.put(channel, new ChannelRecorder(channel, channelState)));
                 //TODO: homework: Trigger the recorder thread from this processor so that it starts recording for each channel
-                this.channelRecorders.forEach( (channel, recorder)-> recorder.start() );
+                this.channerRecorders.forEach( (channel, recorder)-> recorder.start() );
                 // send marker message to all outgoing channels.
                 Message m = new Message(MessageType.MARKER);
                 m.setFrom(this);
@@ -164,8 +149,9 @@ public class Processor implements Observer {
             } else {
                 //Means it isDuplicateMarkerMessage.
                 //TODO: Homework Stop the recorder thread.
-            	ChannelRecorder recorder = channelRecorders.get(fromChannel);
+            	ChannelRecorder recorder = channerRecorders.get(fromChannel);
             	recorder.stopRecording();
+//            	recorder.getThread().interrupt();
             	
             }
             //TODO: Homework Send marker messages to each of the out channels
@@ -189,11 +175,29 @@ public class Processor implements Observer {
         //TODO: Follow steps from Chandy Lamport algorithm. Send out a marker message on outgoing channel
         //[Hint: Use the sendMessgeTo method 
         //TODO: homework Start recording on each of the input channels
-    	this.inChannels.stream().forEach(channel-> channelRecorders.put(channel, new ChannelRecorder(channel, channelState)));
-    	this.channelRecorders.forEach( (channel, recorder)-> recorder.start() );
+    	this.inChannels.stream().forEach(channel-> channerRecorders.put(channel, new ChannelRecorder(channel, channelState)));
+    	this.channerRecorders.forEach( (channel, recorder)-> recorder.start() );
         Message m = new Message(MessageType.MARKER);
     	m.setFrom(this);
     	this.getOutChannels().forEach((outChannel)-> this.sendMessgeTo(m, outChannel));
         
     }
+
+    public int getID(){
+    	return this.id;
+    }
+    
+    public List<Buffer> getOutChannels(){
+    	return this.outChannels;
+    }
+    
+    public List<Buffer> getInChannels(){
+    	return this.inChannels;
+    }
+    
+    public int getAns(){
+    	return this.ans;
+    }
+    
+
 }

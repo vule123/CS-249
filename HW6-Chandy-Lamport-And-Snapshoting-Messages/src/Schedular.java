@@ -13,7 +13,7 @@ public class Schedular implements Runnable{
 	public void run(){
 		
 		try {
-			switch (P.getId()){
+			switch (P.getID()){
 			
 				case 1:
 					algo.executionPlanP1();

@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -55,4 +54,3 @@ public class Buffer extends Observable {
         return messages.size();
     }
 }
-

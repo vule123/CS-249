@@ -89,15 +89,15 @@ public class Main {
     }
     
     public static void printProcessorSnapShot(Processor P){
-    	System.out.println("------------------------Printing Snapshot for Processor P:" + P.getId()+"----------------------------");
-    	System.out.println("Number of Algorithms message received until first marker message = "+ P.getAns());
+    	System.out.println("------------------------Printing Snapshot for Processor P:" +P.getID()+"----------------------------");
+    	System.out.println("Number of Algorithms message received untill first marker message = "+ P.getAns());
     	
     	P.channelState.forEach( (channel,listOfMessages)-> {
     		if (!listOfMessages.isEmpty()){
     			System.out.println("Channel C:"+ channel.getLabel());
     			for(Message m: listOfMessages){
     				if (m.getMessageType() == MessageType.ALGORITHM)
-    					System.out.println("Message Algorithm received from Processor P:" + m.getFrom().getId());
+    					System.out.println("Message Algorithm received from Processor P:" + m.getFrom().getID());
     			}
     		}
     		

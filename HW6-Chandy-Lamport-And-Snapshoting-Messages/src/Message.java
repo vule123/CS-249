@@ -1,4 +1,3 @@
-
 public class Message {
 	MessageType messageType;
 
